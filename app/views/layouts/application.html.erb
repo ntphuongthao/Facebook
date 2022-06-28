@@ -10,11 +10,13 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body style="background-color: rgb(173, 216, 230)">
+  <body style="background-color: rgb(173, 216, 230); font-family: Brush Script MT; font-size: 18px;">
     <%= render 'layouts/navigation' %>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
     <%= yield %>
+    
+    <%= render 'layouts/footer' %>
   </body>
 </html>
