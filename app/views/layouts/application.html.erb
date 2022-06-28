@@ -13,8 +13,19 @@
   <body style="background-color: rgb(173, 216, 230); font-family: Brush Script MT; font-size: 18px;">
     <%= render 'layouts/navigation' %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if notice %>
+      <div class="alert alert-success" role="alert">
+        <p><%= notice %></p>
+      </div>
+    <% end %>
+
+    <% if alert %>
+      <div class="alert alert-danger" role="alert">
+        <p><%= alert %></p>
+      </div>
+    <% end %>
+    
+    <br><br>
     <%= yield %>
     
     <%= render 'layouts/footer' %>
