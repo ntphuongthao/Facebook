@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+
+
+.omniauth-button {
+    border: 0;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1vh;
+    padding: 5px;
+    line-height: 18px;
+    transition: 200ms;
+  }
+  
+  .omniauth-button:hover {
+    cursor: pointer;
+    opacity: 1;
+    transition: 200ms;
+  }
+  
+  .omniauth-button:focus {
+    outline: none;
+  }
+  
+  .facebook {
+    background-color: #3B5998;
+    opacity: 0.85;
+    color: white;
+  }
+  
+  .github {
+    background-color: #040404;
+    opacity: 0.75;
+    color: white;
+  }
+  
+  .fa-facebook, .fa-github {
+    font-size: 18px;
+    transform: translateY(1px);
+    margin-right: 5px;
+  }
