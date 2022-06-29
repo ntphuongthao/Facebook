@@ -31,7 +31,9 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"] ||
+        data = session["devise.github_data"] && session["devise.github_data"]["info"]
+        user.name = data["name"] if user.name.blank?
         user.email = data["email"] if user.email.blank?
       end
     end
@@ -39,7 +41,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[facebook]
+         :omniauthable, omniauth_providers: %i[facebook github]
 
   has_many :friend_invitations,
             foreign_key: :recipient_id,

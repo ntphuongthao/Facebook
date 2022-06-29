@@ -19,9 +19,15 @@
 <% end %>
 
 <%- if devise_mapping.omniauthable? %>
-<div style="text-align: center">
-  <%= button_to user_facebook_omniauth_authorize_path, class: 'omniauth-button facebook w-50' do %>
-    <i class="fab fa-facebook"></i> Log in with Facebook
-  <% end %>
+  <div style="text-align: center">
+    <%= button_to user_facebook_omniauth_authorize_path, class: 'omniauth-button facebook w-50' do %>
+      <i class="fab fa-facebook"></i> Log in with Facebook
+    <% end %>
+  </div>
+  
+  <div style="text-align: center">
+    <%= button_to user_github_omniauth_authorize_path, class: 'omniauth-button github w-50' do %>
+      <i class="fab fa-github"></i> Log in with Github
+    <% end %>
 </div>
 <% end %>
