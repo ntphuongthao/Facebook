@@ -10,6 +10,10 @@
         <li class="nav-link active">Profile [<%= current_user.email %>]</li>
 
         <li class="nav-item">
+          <%= link_to "Friend Requests", friends_requests_path, class: 'nav-link' %>
+        </li>
+
+        <li class="nav-item">
             <%= button_to "Log Out", destroy_user_session_path, class: 'nav-link', :method => "delete" %>
         </li>
       <% else %>
@@ -21,6 +25,10 @@
           <%= link_to "Log In", new_user_session_path, class: 'nav-link' %>
         </li>
       <% end %>
+
+      <li class="nav-item">
+          <%= render 'static_pages/search_form' %>
+        </li>
     </ul>
 
   </div>

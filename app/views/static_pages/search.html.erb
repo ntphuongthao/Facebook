@@ -1,0 +1,12 @@
+<h3>Search results for "<i><%= @query %></i>"</h3>
+
+<div>
+  <% @users.each do |user| %>
+    <div>
+      <div>
+        <%= link_to user.email, user %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<br>

@@ -6,7 +6,6 @@
     <%= form_with(model: resource, as: resource_name, url: new_user_session_path) do |f| %>
 
       <div class="d-flex flex-column justify-content-center align-items-center">
-
         <div class="form-group mb-3 w-50">
           <%= f.label :email, class: "form-label" %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control"  %>
@@ -27,9 +26,12 @@
         <div class="mb-3 d-flex align-items-center justify-content-center">
           <%= f.submit "Log In", class:"btn btn-lg btn-primary rounded-pill" %>
         </div>
-
-        <%= render "devise/shared/links" %>
+        
       </div>
     <% end %>
+
+    <div style= "display: flex; flex-direction: column; align-items-center; justify-content: center">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
 </div>

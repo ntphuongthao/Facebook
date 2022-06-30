@@ -15,4 +15,12 @@ Rails.application.routes.draw do
       delete 'delete'
     end
   end
+
+  get 'friends', to: 'users#friends', as: :friends
+  scope '/friends', as: :friends do
+    get 'find', to: 'users#find_friends'
+    get 'requests', to: 'users#friend_requests'
+  end
+
+  get 'search', to: 'static_pages#search'
 end

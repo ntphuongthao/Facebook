@@ -1,23 +1,21 @@
 
-<h3>Friend Requests</h3>
+<h3>Your Friend Requests</h3>
 
 <div>
   <% @invitations.each do |invitation| %>
     <div>
       <div>
-        <%= link_to invitation.requester.name, user_path(invitation.requester) %>
+        <%= link_to invitation.sender.name, user_path(invitation.sender) %>
       </div>
       <div>
         <%= link_to delete_friend_request_path(invitation),
                     method: :delete,
-                    class: 'delete-request',
-                    data: { confirm: "Delete #{invitation.requester.name}'s friend request?" } do %>
-          
+                    data: { confirm: "Delete #{invitation.sender.name}'s friend request?" } do %>
+          <i>reject</i>
         <% end %>
         <%= link_to confirm_friend_request_path(invitation),
-                    method: :post,
-                    class: 'confirm-request' do %>
-          <i></i>
+                    method: :post do %>
+          <i>accept</i>
         <% end %>
       </div>
     </div>

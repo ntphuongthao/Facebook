@@ -9,4 +9,6 @@ class UsersController < ApplicationController
     @invitations = current_user.friend_invitations
   end
 
+  def find_friends
+  end
 end
