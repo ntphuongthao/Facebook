@@ -7,30 +7,43 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-link active">Profile [<%= current_user.email %>]</li>
+        <li class="nav-item">
+          <%= link_to current_user.email, edit_user_registration_path, class: 'nav-link active'%>
+        </li>
         
         <li class="nav-item">
-            <%= button_to "Log Out", destroy_user_session_path, class: 'nav-link btn btn-dark mr-2', style: 'color: white', :method => "delete" %>
+            <%= link_to "All Your Friends", friends_path, class: 'nav-link'%>
         </li>
 
         <li class="nav-item">
           <%= link_to "Friend Requests", friends_requests_path, class: 'nav-link' %>
         </li>
-        
+
+        <li class="nav-item">
+          <%= render 'static_pages/search_form' %>
+        </li>
       <% else %>
         <li class="nav-item">
           <%= link_to "Register new Account", new_user_registration_path, class: 'nav-link' %>
         </li>
         
         <li class="nav-item">
-          <%= link_to "Log In", new_user_session_path, class: 'nav-link btn btn-dark mr-2' %>
+          <%= link_to "Log In", new_user_session_path, class: 'nav-link' %>
         </li>
-      <% end %>
 
-      <li class="nav-item">
-          <%= render 'static_pages/search_form' %>
-        </li>
+        
+      <% end %>
     </ul>
 
+    <% if user_signed_in? %>
+      <div class="nav-item">
+        <%= button_to "Log Out", destroy_user_session_path, class: 'nav-link btn btn-outline-danger mr-2', :method => "delete" %>
+      </div>
+    <% else %>
+      <div class="nav-item">
+        <%= render 'static_pages/search_form' %>
+      </div>
+    <% end %>
+    
   </div>
 </nav>

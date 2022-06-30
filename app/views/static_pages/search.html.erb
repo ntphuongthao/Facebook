@@ -1,20 +1,25 @@
 <h2>Search results for "<i><%= @query %></i>"</h2>
 
 <div>
-  <% @users.each do |user| %>
-    <div>
-      <div class="d-flex flex-row">
-        <% if user == current_user %>
-          <%= link_to user.email, user %>  <strong>(YOU)</strong>
-        <% else %>
-          <%= link_to user.email, user %>
-          <% if !check_friendship(current_user, user) %>
-            <%= button_to "Add Friend", friend_requests_path, method: :post, params: {recipient_id: user.id}, class: "btn btn-dark ml-2" %>
+  <% if @users.length > 0 %>
+    <% @users.each do |user| %>
+      <div>
+        <div class="d-flex flex-row">
+          <% if user == current_user %>
+            <%= link_to user.email, user %>  <strong>(YOU)</strong>
+          <% else %>
+            <%= link_to user.email, user %>
+            <% if user_signed_in? %>
+              <% if !check_friendship(current_user, user) %>
+                <%= button_to "Add Friend", friend_requests_path, method: :post, params: {recipient_id: user.id}, class: "btn btn-dark ml-2" %>
+              <% end %>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
+        <br>
       </div>
-      <br>
-    </div>
+    <% end %>
   <% end %>
 </div>
+
 <br>

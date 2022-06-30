@@ -54,6 +54,5 @@ class User < ApplicationRecord
             dependent: :destroy
   
   has_many :friendships,
-      ->(user) { unscope(:where).where('friend_a_id = ? OR friend_b_id = ?', user.id, user.id) },
       dependent: :destroy
 end
