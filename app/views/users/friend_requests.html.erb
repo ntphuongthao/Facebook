@@ -5,18 +5,24 @@
   <% @invitations.each do |invitation| %>
     <div>
       <div>
-        <%= link_to invitation.sender.name, user_path(invitation.sender) %>
+        You have a friend request from:
+        <%= link_to invitation.sender.email, user_path(invitation.sender) %>
       </div>
       <div>
-        <%= link_to delete_friend_request_path(invitation),
-                    method: :delete,
-                    data: { confirm: "Delete #{invitation.sender.name}'s friend request?" } do %>
-          <i>reject</i>
-        <% end %>
-        <%= link_to confirm_friend_request_path(invitation),
-                    method: :post do %>
-          <i>accept</i>
-        <% end %>
+        <div class="d-inline-flex p-2">
+          <%= button_to confirm_friend_request_path(invitation),
+                      class: 'btn btn-primary mb-2',
+                      method: :post do %>
+            <i>accept</i>
+          <% end %>
+
+          <%= button_to delete_friend_request_path(invitation),
+                      method: :delete,
+                      class: 'btn btn-danger mb-2',
+                      data: { confirm: "Delete #{invitation.sender.name}'s friend request?" } do %>
+            <i>reject</i>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>

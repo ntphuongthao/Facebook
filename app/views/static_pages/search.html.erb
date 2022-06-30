@@ -1,11 +1,19 @@
-<h3>Search results for "<i><%= @query %></i>"</h3>
+<h2>Search results for "<i><%= @query %></i>"</h2>
 
 <div>
   <% @users.each do |user| %>
     <div>
-      <div>
-        <%= link_to user.email, user %>
+      <div class="d-flex flex-row">
+        <% if user == current_user %>
+          <%= link_to user.email, user %>  <strong>(YOU)</strong>
+        <% else %>
+          <%= link_to user.email, user %>
+          <% if !check_friendship(current_user, user) %>
+            <%= button_to "Add Friend", friend_requests_path, method: :post, params: {recipient_id: user.id}, class: "btn btn-dark ml-2" %>
+          <% end %>
+        <% end %>
       </div>
+      <br>
     </div>
   <% end %>
 </div>

@@ -1,19 +1,20 @@
 class FriendRequestsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_friend_request, except: create
+  before_action :set_friend_request, except: :create
 
   def create
     @friend_request = FriendRequest.create(sender_id: current_user.id, recipient_id: params[:recipient_id])
     if @friend_request.save
       redirect_to root_path, notice: "Friend request has been successfully sent!"
     else
-      redirect_to root_path, notice: "Friend request has not been successfully sent!"
+      redirect_to root_path, alert: "Friend request has not been successfully sent!"
     end
   end
 
   def confirm
     if @friend_request.recipient == current_user
       Friendship.create(friend_a: @friend_request.sender, friend_b: @friend_request.recipient)
+      Friendship.create(friend_b: @friend_request.sender, friend_a: @friend_request.recipient)
       @friend_request.destroy
       redirect_to root_path, notice: "Friend request has been successfully confirmed!"
     else
