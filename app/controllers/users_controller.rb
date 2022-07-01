@@ -3,7 +3,10 @@ class UsersController < ApplicationController
 
   def friends
     @user = current_user
-    @friends = @user.friendships
+    @friends = []
+    @user.friendships.each do |friendship| 
+      @friends << User.find(friendship.friend_b_id)
+    end
   end
 
   def show 

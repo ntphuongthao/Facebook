@@ -54,5 +54,6 @@ class User < ApplicationRecord
             dependent: :destroy
   
   has_many :friendships,
-      dependent: :destroy
+            foreign_key: :friend_a_id,
+            dependent: :destroy
 end

@@ -2,7 +2,7 @@
 <%= form_with(url: search_path, method: :get, local: true, class: 'form-inline my-2 my-lg-0') do |f| %>
     <div class="form-group mb-2">
         <%= f.text_field :query, placeholder: "Search your friends here...", class: 'form-control mr-sm-2'%>
-        <%= button_tag type: 'submit', class: 'btn btn-outline-success mr-sm-2' do %>
+        <%= button_tag type: 'submit', class: 'btn btn-outline-primary mr-sm-2' do %>
             Submit
         <% end %>
     </div>

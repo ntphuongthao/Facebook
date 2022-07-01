@@ -1,9 +1,14 @@
-<h3><%= @user.name %>'s Friends</h3>
-
+<h3><%= current_user.email %>'s Friends</h3>
 <div>
+  <% if @friends.empty? %>
+    Currently you have no friends!
+  <% else %>
+    You have <%= pluralize(@friends.length, 'friend') %>!
+  <% end %>
+
   <% @friends.each do |friend| %>
-    <div>
-      <div>
+    <div class="card mb-2" style="width: 22rem">
+      <div class="card-body">
         <%= link_to friend.email, user_path(friend) %>
       </div>
     </div>

@@ -1,17 +1,26 @@
 <h2>Search results for "<i><%= @query %></i>"</h2>
 
 <div>
-  <% if @users.length > 0 %>
+  <% if @users.empty? || @users.length == User.all.length %>
+    No matching results!
+  <% else %>
+    There are <%= @users.length %> matching profiles!
+
     <% @users.each do |user| %>
       <div>
-        <div class="d-flex flex-row">
+        <div class="card" style="width: 18rem;">
           <% if user == current_user %>
-            <%= link_to user.email, user %>  <strong>(YOU)</strong>
+            <div class="card-title"><%= link_to user.email, user %>  <strong>(YOU)</strong></div>
+            
           <% else %>
-            <%= link_to user.email, user %>
+            <div class="card-title"><%= link_to user.email, user %></div>
             <% if user_signed_in? %>
-              <% if !check_friendship(current_user, user) %>
-                <%= button_to "Add Friend", friend_requests_path, method: :post, params: {recipient_id: user.id}, class: "btn btn-dark ml-2" %>
+              <% if !check_friendship(current_user, user) && FriendRequest.where(sender_id: current_user.id, recipient_id: user.id).empty? %>
+                <%= button_to "Add Friend", friend_requests_path, method: :post, params: {recipient_id: user.id, query: params[:query]}, class: "btn btn-dark ml-2" %>
+              <% elsif check_friendship(current_user, user) %>
+                <i>(Your friend)</i>
+              <% elsif !FriendRequest.where(sender_id: current_user.id, recipient_id: user.id).empty? %>
+                <i>(Pending request...)</i>
               <% end %>
             <% end %>
           <% end %>
@@ -21,5 +30,4 @@
     <% end %>
   <% end %>
 </div>
-
 <br>
