@@ -1,5 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-   <%= link_to "FACEBOOK", root_path, class: "navbar-brand", id: "logo", style: "font-size: 28px;" %>
+  <% if user_signed_in? %>
+    <%= link_to "FACEBOOK", current_user, class: "navbar-brand", id: "logo", style: "font-size: 28px;" %>
+  <% else %>
+    <%= link_to "FACEBOOK", root_path, class: "navbar-brand", id: "logo", style: "font-size: 28px;" %>
+  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

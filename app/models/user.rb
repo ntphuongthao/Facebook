@@ -56,4 +56,9 @@ class User < ApplicationRecord
   has_many :friendships,
             foreign_key: :friend_a_id,
             dependent: :destroy
+
+  has_many :posts,
+            foreign_key: :author_id,
+            dependent: :destroy
 end
+

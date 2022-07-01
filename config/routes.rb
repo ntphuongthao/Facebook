@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   end
 
   get 'search', to: 'static_pages#search'
+
+  resources :posts
 end

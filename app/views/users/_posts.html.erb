@@ -1,0 +1,10 @@
+<% posts.each do |post| %>
+    <div class="card mb-3" style="width:24rem">
+        <h3 class="card-header"><%= post.title %></h3>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0"><%= post.description %></blockquote>
+            <%= link_to "Edit post", edit_post_path(post), class: 'btn btn-secondary mb-2' %>
+            <%= button_to "Delete post", post, method: :delete, class: 'btn btn-danger' %>
+        </div>
+    </div>
+<% end %>
