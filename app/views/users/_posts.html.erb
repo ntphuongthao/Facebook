@@ -1,10 +1,31 @@
 <% posts.each do |post| %>
-    <div class="card mb-3" style="width:24rem">
-        <h3 class="card-header"><%= post.title %></h3>
+    <div class="card mb-3" style="width:30rem">
+        <h3 class="card-header">
+            <%= post.title %><br>
+            <% if current_user == post.author %>
+                <%= link_to "Edit post", edit_post_path(post), class: 'btn btn-secondary mb-2' %>
+                <%= button_to "Delete post", post, method: :delete, class: 'btn btn-danger', style: 'display: inline' %>
+            <% end %>
+        </h3>
         <div class="card-body">
             <blockquote class="blockquote mb-0"><%= post.description %></blockquote>
-            <%= link_to "Edit post", edit_post_path(post), class: 'btn btn-secondary mb-2' %>
-            <%= button_to "Delete post", post, method: :delete, class: 'btn btn-danger' %>
+            <% if !post.comments.empty? %>
+                <% post.comments.each do |comment| %>
+                    <strong><%= comment.author.email %></strong>: <%= comment.content %><br>
+                <% end %>
+            <% end %>
+            <%= form_with(model: Comment.new, local: true) do |form| %>
+                <div class='comment-form'>
+                    <%= form.hidden_field :commentable_id, value: post.id %>
+                    <%= form.hidden_field :commentable_type, value: post.class %>
+                    <%= form.hidden_field :author_id, value: current_user.id %>
+                    <%= form.hidden_field :post_id, value: post.id %>
+
+                    <%= form.text_area :content, placeholder: "Write a comment..." %>
+                    <%= form.submit class: 'btn btn-primary' %>
+                    </div>
+                </div>
+            <% end %>
         </div>
     </div>
 <% end %>
