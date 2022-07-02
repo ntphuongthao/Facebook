@@ -1,0 +1,12 @@
+<% @comment = Comment.find(params[:id]) %>
+<%= form_with(model: @comment, local: true) do |form| %>
+    <div class='comment-form'>
+        <%= form.hidden_field :commentable_id, value: @comment.commentable_id %>
+        <%= form.hidden_field :commentable_type, value: @comment.commentable_type %>
+        <%= form.hidden_field :author_id, value: current_user.id %>
+        <%= form.hidden_field :post_id, value: @comment.id %>
+
+        <%= form.text_area :content, placeholder: "Write a comment..." %>
+        <%= form.submit class: 'btn btn-primary' %>
+    </div>
+<% end %>
