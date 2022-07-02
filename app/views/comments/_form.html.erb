@@ -1,11 +1,12 @@
 <%= form_with(model: Comment.new, local: true) do |form| %>
-    <div class='comment-form'>
+    <div class='d-flex' style='align-items: center'>
         <%= form.hidden_field :commentable_id, value: post.id %>
         <%= form.hidden_field :commentable_type, value: post.class %>
         <%= form.hidden_field :author_id, value: current_user.id %>
         <%= form.hidden_field :post_id, value: post.id %>
+        <%= form.hidden_field :friend_id, value: params[:id] %>
 
         <%= form.text_area :content, placeholder: "Write a comment..." %>
-        <%= form.submit class: 'btn btn-primary' %>
+        <%= form.submit class: 'btn btn-secondary ml-2', style: 'height: 50%;' %>
     </div>
 <% end %>

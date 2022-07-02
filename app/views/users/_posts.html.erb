@@ -1,11 +1,13 @@
 <% posts.each do |post| %>
     <div class="card mb-3" style="width:75rem">
-        <h3 class="card-header">
-            <%= post.title %><br>
-            <% if current_user == post.author %>
-                <%= link_to "Edit post", edit_post_path(post), class: 'btn btn-secondary mb-2' %>
-                <%= button_to "Delete post", post, method: :delete, class: 'btn btn-danger', style: 'display: inline' %>
-            <% end %>
+        <h3 class="card-header d-flex justify-content-between">
+            <%= current_user.username %>: <%= post.title %><br>
+            <div class="d-flex justify-content-between", style="width: 12rem">
+                <% if current_user == post.author %>
+                    <%= link_to "Edit post", edit_post_path(post), class: 'btn btn-secondary mb-2' %>
+                    <%= button_to "Delete post", post, method: :delete, class: 'btn btn-danger', style: 'display: inline' %>
+                <% end %>
+            </div>
         </h3>
         <div class="card-body">
             <blockquote class="blockquote mb-0"><%= post.description %></blockquote>
@@ -13,11 +15,13 @@
         <div class="card-footer">
             <% if !post.comments.empty? %>
                 <% post.comments.each do |comment| %>
-                    <strong><%= comment.author.email %></strong>: <%= comment.content %>
-                    <% if comment.author == current_user %>
-                        <%= link_to "Edit", edit_comment_path(comment) %>
-                        <%= link_to "Delete", comment, method: :delete %>
-                    <% end %>
+                    <div class='d-flex' style='align-items: center' >
+                        <strong><%= comment.author.email %></strong>: <%= comment.content %>
+                        <% if comment.author == current_user %>
+                            <%= link_to "Edit", edit_comment_path(comment), class: 'ml-3 mr-2' %>
+                            <%= button_to "Delete", comment, method: :delete , class: 'btn btn-danger' %>
+                        <% end %>
+                    </div>
                     <br>
                 <% end %>
             <% end %>
