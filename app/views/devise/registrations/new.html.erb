@@ -6,6 +6,11 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="d-flex flex-column justify-content-center align-items-center">
+        
+        <div class="form-group mb-3 w-50">
+          <%= f.label :username, class: "form-label"%>
+          <%= f.text_field :username, class: "form-control" %>
+        </div>
 
         <div class="form-group mb-3 w-50">
           <%= f.label :email, class: "form-label"%>

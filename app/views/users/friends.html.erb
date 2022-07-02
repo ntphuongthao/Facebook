@@ -1,16 +1,21 @@
-<h3><%= current_user.email %>'s Friends</h3>
-<div>
-  <% if @friends.empty? %>
-    Currently you have no friends!
-  <% else %>
-    You have <%= pluralize(@friends.length, 'friend') %>!
-  <% end %>
+<div class='container'>
+  <h3><%= current_user.username %>'s Friends</h3>
+  <div>
+    <% if @friends.empty? %>
+      Currently you have no friends!
+    <% else %>
+      You have <%= pluralize(@friends.length, 'friend') %>!
+    <% end %>
 
-  <% @friends.each do |friend| %>
-    <div class="card mb-2" style="width: 22rem">
-      <div class="card-body">
-        <%= link_to friend.email, user_path(friend) %>
+    <% @friends.each do |friend| %>
+      <div class="card mb-2" style="width: 22rem">
+        <div class="card-body">
+          <strong>Username: </strong>
+          <%= link_to friend.username, user_path(friend) %>
+          <br>
+          <strong>Email:</strong> <%= friend.email %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

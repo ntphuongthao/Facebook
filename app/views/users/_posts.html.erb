@@ -9,6 +9,8 @@
         </h3>
         <div class="card-body">
             <blockquote class="blockquote mb-0"><%= post.description %></blockquote>
+        </div>
+        <div class="card-footer">
             <% if !post.comments.empty? %>
                 <% post.comments.each do |comment| %>
                     <strong><%= comment.author.email %></strong>: <%= comment.content %>
