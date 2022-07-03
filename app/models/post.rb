@@ -4,4 +4,7 @@ class Post < ApplicationRecord
             as: :commentable, 
             dependent: :destroy
 
+  has_many :likes, 
+            as: :likable, 
+            dependent: :destroy
 end

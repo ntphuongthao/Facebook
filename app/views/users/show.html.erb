@@ -1,5 +1,7 @@
 <div class='container'>
-    <%= link_to "Add a post", new_post_path, class: 'btn btn-outline-dark mb-4' %>
+    <% if @user == current_user %>
+        <%= link_to "Add a post", new_post_path, class: 'btn btn-outline-dark mb-4' %>
+    <% end %>
 
     <% if @posts.length > 0 %>
         <h1>All <%= @user.username %> posts are listed below:</h1>
