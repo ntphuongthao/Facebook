@@ -10,25 +10,11 @@
             </div>
         </h3>
         <div class="card-body">
-            <blockquote class="blockquote mb-0"><%= post.description %></blockquote>
+            <blockquote class="blockquote mb-0" style="font-size: 25px"><%= post.description %></blockquote>
+            <%= render 'like', object: post %>
         </div>
         <div class="card-footer">
-            <% like = Like.where(user_id: current_user.id, likable_id: post.id, likable_type: post.class.to_s) %>
-            <% if like == [] %>
-                <%= form_with(model: Like.new, local: true) do |form| %>
-                    <div class='d-flex' style='align-items: center'>
-                        <%= form.hidden_field :likable_id, value: post.id %>
-                        <%= form.hidden_field :likable_type, value: post.class.to_s %>
-                        <%= form.hidden_field :user_id, value: current_user.id %>
-                        <%= form.submit "Like", class: 'btn btn-primary' %>
-                    </div>
-                <% end %>
-            <% else %>
-                <%= button_to "Dislike", like[0], method: :delete, class: 'btn btn-primary' %>
-            <% end %>
-            <%= pluralize(post.likes.length, 'like') %>
-
-
+            <strong>Comments:</strong><br>
             <% if !post.comments.empty? %>
                 <% post.comments.each do |comment| %>
                     <div class='d-flex' style='align-items: center' >
@@ -36,6 +22,8 @@
                         <% if comment.author == current_user %>
                             <%= link_to "Edit", edit_comment_path(comment), class: 'ml-3 mr-2' %>
                             <%= button_to "Delete", comment, method: :delete , class: 'btn btn-danger' %>
+                            <br>
+                            <%= render 'like', object: comment %>
                         <% end %>
                     </div>
                     <br>
