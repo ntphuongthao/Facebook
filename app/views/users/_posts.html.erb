@@ -21,8 +21,7 @@
                         <strong><%= comment.author.email %></strong>: <%= comment.content %>
                         <% if comment.author == current_user %>
                             <%= link_to "Edit", edit_comment_path(comment), class: 'ml-3 mr-2' %>
-                            <%= button_to "Delete", comment, method: :delete , class: 'btn btn-danger' %>
-                            <br>
+                            <%= button_to "Delete", comment, method: :delete , class: 'btn btn-danger mr-4' %>
                             <%= render 'like', object: comment %>
                         <% end %>
                     </div>
