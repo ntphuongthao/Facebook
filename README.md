@@ -1,24 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+There are partial mockups of Facebook functions in this project.
+This project involved 4 main models: Users, Posts, Comments, and Likes.
+The following advanced features were implemented to increase the complexity and flexibility of this project - such as "friending, friend request, login with real Facebook/Github account, feeding with all your posts and your friends' posts"
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
